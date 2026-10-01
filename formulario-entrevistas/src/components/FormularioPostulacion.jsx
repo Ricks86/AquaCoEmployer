@@ -18,10 +18,33 @@ const FormularioPostulacion = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Datos listos para enviar:', formData);
-    alert('Formulario enviado correctamente. Revisa la consola para ver los datos.');
+    
+    // Crear un objeto FormData para enviar datos y archivos
+    const data = new FormData();
+    data.append('nombre', formData.nombre);
+    data.append('familiaCargo', formData.familiaCargo);
+    data.append('cargoPostular', formData.cargoPostular);
+    if (formData.cv) {
+      data.append('cv', formData.cv);
+    }
+
+    try {
+      const response = await fetch('http://localhost:8080/api/applications', {
+        method: 'POST',
+        body: data,
+      });
+
+      if (response.ok) {
+        alert('¡Formulario enviado correctamente al servidor!');
+      } else {
+        alert('Hubo un error al enviar el formulario.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Error de conexión con el servidor.');
+    }
   };
 
   return (
