@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaChile - EvalPsico Laboral</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="header">
+    <div class="brand-title">
+      <div class="logo-box">
+        <i data-lucide="waves" style="width:20px; height:20px; stroke:#0d9488;"></i>
+      </div>
+      <div class="brand-text">
+        <span class="company-name">AquaChile <span class="tag-mvp">MVP</span></span>
+        <span class="sub-name">EvalPsico Laboral</span>
+      </div>
+    </div>
+    
+    <div class="header-right">
+      <button class="btn-portal-publico" id="topPortalBtn">
+        <i data-lucide="globe" style="width:14px; height:14px;"></i> Portal Público
+      </button>
+      <div class="user-badge">
+        <div class="user-info">
+          <span class="user-name">Psic. Valeria Lagos</span>
+          <span class="user-role">Recursos Humanos</span>
+        </div>
+        <div class="avatar">VL</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <div class="main-container">
+    
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">PANEL INTERNO RRHH</div>
+        
+        <button class="nav-item active" data-view="dashboard">
+          <i data-lucide="layout-dashboard"></i> Dashboard
+        </button>
+        
+        <button class="nav-item" data-view="postulantes">
+          <i data-lucide="users"></i> Postulantes Recibidos
+        </button>
+        
+        <button class="nav-item" data-view="listado">
+          <i data-lucide="file-text"></i> Listado Solicitudes
+        </button>
+        
+        <button class="nav-item" data-view="nueva">
+          <i data-lucide="file-plus"></i> + Nueva Solicitud
+        </button>
+        
+        <button class="nav-item" data-view="detalle">
+          <i data-lucide="file-check"></i> Detalle Evaluación
+        </button>
+      </div>
+
+      <div class="sidebar-section" style="margin-top:20px;">
+        <div class="sidebar-label">ENTORNO EXTERNO</div>
+        
+        <button class="nav-item portal-external-link" data-view="portal">
+          <i data-lucide="globe"></i>
+          <div>
+            <div>Portal Postulación</div>
+            <div style="font-size:10px; opacity:0.75; font-weight:normal;">Vista pública candidatos</div>
+          </div>
+          <i data-lucide="external-link" style="margin-left:auto; width:12px; height:12px;"></i>
+        </button>
+      </div>
+
+      <div class="footer-card">
+        <div style="font-weight:700; color:#0f766e; font-size:12px; margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+          <i data-lucide="shield-check" style="width:14px; height:14px;"></i> AquaChile RRHH
+        </div>
+        <div>Ambiente MVP Local. Postulantes sincronizados desde el portal externo.</div>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="content">
+
+      <!-- VIEW 1: DASHBOARD -->
+      <section id="view-dashboard" class="view active">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Dashboard General</h1>
+            <p class="page-subtitle">Bienvenida de nuevo. Resumen del estado de procesos de evaluación psicolaboral.</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigateTo('nueva')">
+            <i data-lucide="plus" style="width:16px; height:16px;"></i> + Nueva Solicitud
+          </button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Postulantes Recibidos</span>
+              <div class="stat-icon icon-blue"><i data-lucide="users" style="width:16px; height:16px;"></i></div>
+            </div>
+            <div class="stat-value" id="dash-stat-postulantes">5</div>
+            <div class="stat-sub"><i data-lucide="globe" style="width:12px; height:12px;"></i> Portal de empleo</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Pendientes</span>
+              <div class="stat-icon icon-yellow"><i data-lucide="clock" style="width:16px; height:16px;"></i></div>
+            </div>
+            <div class="stat-value" id="dash-stat-pendientes">1</div>
+            <div><span class="badge badge-pendiente">Por agendar</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">En Proceso</span>
+              <div class="stat-icon icon-purple"><i data-lucide="loader" style="width:16px; height:16px;"></i></div>
+            </div>
+            <div class="stat-value" id="dash-stat-proceso">2</div>
+            <div><span class="badge badge-proceso">En evaluación</span></div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-header">
+              <span class="stat-title">Finalizadas</span>
+              <div class="stat-icon icon-green"><i data-lucide="check-circle" style="width:16px; height:16px;"></i></div>
+            </div>
+            <div class="stat-value" id="dash-stat-finalizadas">1</div>
+            <div><span class="badge badge-finalizada">Completadas</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div style="font-weight:700; font-size:15px; color:#111827;">Últimas Solicitudes Registradas</div>
+              <div style="font-size:12px; color:#6b7280;">Gestión inmediata de informes de idoneidad laboral</div>
+            </div>
+            <a href="#" class="view-all-link" onclick="navigateTo('listado'); return false;">
+              Ver todas <i data-lucide="chevron-right" style="width:14px; height:14px;"></i>
+            </a>
+          </div>
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th>CANDIDATO</th>
+                <th>CARGO POSTULADO</th>
+                <th>FECHA</th>
+                <th>ESTADO</th>
+                <th style="text-align:right;">ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody id="dash-table-body">
+              <!-- JS Populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW 2: POSTULANTES RECIBIDOS -->
+      <section id="view-postulantes" class="view">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Postulantes Recibidos</h1>
+            <p class="page-subtitle">Bandeja de currículums y antecedentes ingresados para cargos de AquaChile.</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigateTo('nueva')">
+            <i data-lucide="plus" style="width:16px; height:16px;"></i> + Nueva Solicitud
+          </button>
+        </div>
+
+        <div class="banner-info">
+          <div class="banner-icon"><i data-lucide="info" style="width:18px; height:18px;"></i></div>
+          <div>
+            <div class="banner-title">Bandeja de recepción de postulantes externos</div>
+            <div class="banner-desc">Bandeja de postulantes recibidos a través del Portal de Empleos / Postulación Externa. Los reclutadores pueden revisar antecedentes en modo lectura, examinar sus CVs y derivar directamente a evaluación psicológica mediante el botón "Iniciar Solicitud".</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <div style="flex:1; position:relative;">
+            <i data-lucide="search" style="position:absolute; left:12px; top:11px; width:16px; height:16px; color:#9ca3af;"></i>
+            <input type="text" class="input" id="searchPostulante" placeholder="Buscar por nombre, cargo, email o teléfono..." style="padding-left:36px;" onkeyup="filterPostulantes()">
+          </div>
+          <button class="btn btn-outline" onclick="clearPostulanteFilter()" style="color:#6b7280;">Limpiar</button>
+          <select class="input" id="filterFamiliaPostulante" style="width:200px;" onchange="filterPostulantes()">
+            <option value="">Todas las Familias</option>
+            <option value="Tecnología/TI">Tecnología/TI</option>
+            <option value="Operaciones y Logística">Operaciones y Logística</option>
+            <option value="Recursos Humanos">Recursos Humanos</option>
+            <option value="Finanzas y Contabilidad">Finanzas y Contabilidad</option>
+            <option value="Ventas y Marketing">Ventas y Marketing</option>
+          </select>
+        </div>
+
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>POSTULANTE</th>
+                <th>CONTACTO</th>
+                <th>FAMILIA / CARGO POSTULADO</th>
+                <th>FECHA POSTULACIÓN</th>
+                <th>CURRÍCULUM VITAE</th>
+                <th style="text-align:right;">ACCIONES DE SELECCIÓN</th>
+              </tr>
+            </thead>
+            <tbody id="postulantes-table-body">
+              <!-- JS Populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW 3: LISTADO SOLICITUDES -->
+      <section id="view-listado" class="view">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Listado de Solicitudes</h1>
+            <p class="page-subtitle">Monitoreo de procesos y asignación de evaluaciones psicolaborales</p>
+          </div>
+          <button class="btn btn-primary" onclick="navigateTo('nueva')">
+            <i data-lucide="plus" style="width:16px; height:16px;"></i> + Nueva Solicitud
+          </button>
+        </div>
+
+        <div class="filter-bar">
+          <div style="flex:1;">
+            <label class="form-label">FILTRAR POR ESTADO</label>
+            <select class="input" id="filterEstado" onchange="filterSolicitudes()">
+              <option value="">Todos los Estados</option>
+              <option value="Pendiente">Pendiente</option>
+              <option value="En proceso">En proceso</option>
+              <option value="Finalizada">Finalizada</option>
+            </select>
+          </div>
+          <div style="flex:1;">
+            <label class="form-label">FILTRAR POR FAMILIA DE CARGO</label>
+            <select class="input" id="filterFamilia" onchange="filterSolicitudes()">
+              <option value="">Todas las Familias</option>
+              <option value="Tecnología/TI">Tecnología/TI</option>
+              <option value="Operaciones y Logística">Operaciones y Logística</option>
+              <option value="Recursos Humanos">Recursos Humanos</option>
+              <option value="Finanzas y Contabilidad">Finanzas y Contabilidad</option>
+            </select>
+          </div>
+          <div style="display:flex; align-items:flex-end;">
+            <button class="btn btn-outline" onclick="resetSolicitudFilters()">
+              <i data-lucide="rotate-ccw" style="width:14px; height:14px;"></i> Restablecer Filtros
+            </button>
+          </div>
+        </div>
+
+        <div class="card">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID SOLICITUD</th>
+                <th>CANDIDATO</th>
+                <th>CARGO</th>
+                <th>FECHA SOLICITUD</th>
+                <th>RESPONSABLE</th>
+                <th>ESTADO</th>
+                <th style="text-align:right;">ACCIÓN</th>
+              </tr>
+            </thead>
+            <tbody id="solicitudes-table-body">
+              <!-- JS Populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- VIEW 4: NUEVA SOLICITUD -->
+      <section id="view-nueva" class="view">
+        <button class="btn-back" onclick="navigateTo('listado')">
+          <i data-lucide="arrow-left" style="width:14px; height:14px;"></i> Volver a Solicitudes
+        </button>
+
+        <h1 class="page-title">Crear Nueva Solicitud de Evaluación</h1>
+        <p class="page-subtitle" style="margin-bottom:20px;">Asocia a un postulante recibido para iniciar su batería de pruebas psicolaborales.</p>
+
+        <div class="form-card">
+          <form id="formNuevaSolicitud" onsubmit="handleCreateSolicitud(event)">
+            <div class="form-group">
+              <label class="form-label">Seleccionar Postulante *</label>
+              <select class="input" id="selectPostulante" required onchange="onSelectPostulanteChange()">
+                <option value="">Selecciona un postulante recibido...</option>
+              </select>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Cargo a Postular (Automático)</label>
+                <input type="text" class="input" id="cargoAuto" placeholder="Selecciona un postulante arriba" readonly style="background:#f9fafb;">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Familia de Cargo (Automática)</label>
+                <input type="text" class="input" id="familiaAuto" placeholder="Selecciona un postulante arriba" readonly style="background:#f9fafb;">
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Fecha de Solicitud *</label>
+                <input type="date" class="input" id="fechaSolicitud" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Responsable / Evaluador Asignado *</label>
+                <input type="text" class="input" id="evaluadorAsignado" value="Psic. Valeria Lagos" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Estado Inicial</label>
+              <div style="background:#fffbeb; border:1px solid #fef3c7; color:#b45309; padding:12px; border-radius:8px; font-weight:600; font-size:14px;">
+                Pendiente
+              </div>
+              <div style="font-size:11px; color:#6b7280; margin-top:4px;">El estado se actualiza en el panel de evaluación psicológica.</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Observaciones Iniciales</label>
+              <textarea class="input" id="obsIniciales" rows="4" placeholder="Comentarios del requerimiento del área solicitante en AquaChile..."></textarea>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+              <button type="button" class="btn btn-outline" onclick="navigateTo('listado')">Volver</button>
+              <button type="submit" class="btn btn-primary">
+                <i data-lucide="check" style="width:16px; height:16px;"></i> Crear Solicitud
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- VIEW 5: DETALLE EVALUACIÓN -->
+      <section id="view-detalle" class="view">
+        <button class="btn-back" onclick="navigateTo('listado')">
+          <i data-lucide="arrow-left" style="width:14px; height:14px;"></i> Volver a Solicitudes
+        </button>
+
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:4px;">
+          <h1 class="page-title" style="margin-bottom:0;">Detalle y Registro de Evaluación</h1>
+          <span class="badge" id="det-id-badge" style="background:#e5e7eb; color:#374151; font-weight:700;">SOL-101</span>
+          <span class="badge badge-proceso" id="det-estado-badge" style="margin-left:auto;">En proceso</span>
+        </div>
+        <p class="page-subtitle" style="margin-bottom:20px;">Ficha técnica y emisión del informe de aptitud psicolaboral.</p>
+
+        <div class="detail-grid">
+          <!-- Candidato Info -->
+          <div class="card" style="padding:20px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; font-weight:700; color:#111827;">
+              <i data-lucide="user-check" style="color:#0d9488;"></i> Ficha del Candidato
+            </div>
+
+            <div style="border-top:1px solid #f3f4f6; padding-top:16px;">
+              <div class="field-label">CANDIDATO</div>
+              <div style="font-weight:700; font-size:16px; color:#111827; margin-bottom:12px;" id="det-nombre">Camila Morales Sepúlveda</div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px;">
+                <div>
+                  <div class="field-label">CORREO</div>
+                  <div class="field-value" id="det-correo">camila.morales@ejemplo.com</div>
+                </div>
+                <div>
+                  <div class="field-label">TELÉFONO</div>
+                  <div class="field-value" id="det-telefono">+56 9 8452 1190</div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:12px;">
+                <div class="field-label">CARGO POSTULADO</div>
+                <div style="color:#0d9488; font-weight:700;" id="det-cargo">Desarrollador Full Stack Senior</div>
+              </div>
+
+              <div style="margin-bottom:16px;">
+                <div class="field-label">FAMILIA DE CARGO</div>
+                <div class="field-value" id="det-familia">Tecnología/TI</div>
+              </div>
+
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px; border-top:1px dashed #e5e7eb; padding-top:12px;">
+                <div>
+                  <div class="field-label">FECHA SOLICITUD</div>
+                  <div class="field-value" id="det-fecha">2025-05-02</div>
+                </div>
+                <div>
+                  <div class="field-label">EVALUADOR ASIGNADO</div>
+                  <div class="field-value" id="det-evaluador">Psic. Valeria Lagos</div>
+                </div>
+              </div>
+
+              <div style="margin-bottom:20px;">
+                <div class="field-label">OBSERVACIONES DE INGRESO</div>
+                <div style="background:#f9fafb; padding:10px; border-radius:6px; font-style:italic; font-size:12px; color:#4b5563;" id="det-obs-ingreso">
+                  Requerimiento de la Subgerencia de Transformación Digital.
+                </div>
+              </div>
+
+              <button class="btn btn-outline" style="width:100%; justify-content:center;" onclick="alert('Descargando archivo PDF...')">
+                <i data-lucide="download" style="width:14px; height:14px;"></i> <span id="det-cv-name">Descargar CV_Camila_Morales_2025.pdf</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dictamen y Form -->
+          <div class="card" style="padding:20px;">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px; font-weight:700; color:#111827;">
+              <i data-lucide="clipboard-check" style="color:#0284c7;"></i> Registro Psicolaboral y Dictamen
+            </div>
+            <div style="font-size:12px; color:#6b7280; margin-top:-12px; margin-bottom:16px;">Actualiza las notas clínicas y define el avance del postulante</div>
+
+            <form onsubmit="handleSaveEvaluacion(event)">
+              <div class="form-group">
+                <label class="form-label">Estado del Proceso de Evaluación *</label>
+                <select class="input" id="detEstadoSelect">
+                  <option value="Pendiente">Pendiente (Por agendar)</option>
+                  <option value="En proceso">En proceso (Entrevista o batería rendida)</option>
+                  <option value="Finalizada">Finalizada (Apto / Informe listo)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Fecha de la Evaluación *</label>
+                <input type="date" class="input" id="detFechaEval" value="2025-05-06">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Comentarios / Observaciones Psicolaborales *</label>
+                <textarea class="input" id="detComentarios" rows="5">Postulante demuestra sólidos rasgos de pensamiento abstracto, autonomía técnica y alta orientación a resolución de problemas. Buena compatibilidad con metodologías ágiles.</textarea>
+              </div>
+
+              <div style="background:#f9fafb; padding:16px; border-radius:8px; border:1px solid #f3f4f6; margin-bottom:20px;">
+                <div style="font-weight:700; font-size:12px; color:#374151; margin-bottom:12px;">Checklist de Criterios Básicos AquaChile</div>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:12px;">
+                  <label class="checkbox-container">
+                    <input type="checkbox" id="chk1" checked> Entrevista por Competencias
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" id="chk2" checked> Test de Zulliger / Lüscher
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" id="chk3" checked> Verificación Referencias
+                  </label>
+                  <label class="checkbox-container">
+                    <input type="checkbox" id="chk4"> Fit Cultural AquaChile
+                  </label>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-dark" style="width:100%; justify-content:center; padding:12px;">
+                <i data-lucide="save" style="width:16px; height:16px;"></i> Guardar Evaluación y Actualizar Estado
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- VIEW 6: PORTAL POSTULACIÓN (PUBLIC) -->
+      <section id="view-portal" class="view">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="badge" style="background:#dcfce7; color:#166534; font-weight:700;">ENTORNO EXTERNO</span>
+            <span style="font-size:12px; color:#6b7280;">Portal Público de Empleos (/postular)</span>
+          </div>
+          <button class="btn btn-outline" onclick="navigateTo('dashboard')">
+            <i data-lucide="arrow-left" style="width:14px; height:14px;"></i> Volver al Panel Interno RRHH
+          </button>
+        </div>
+
+        <div class="portal-banner">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+            <div style="background:#0d9488; padding:8px; border-radius:8px; display:flex;">
+              <i data-lucide="waves" style="width:24px; height:24px; stroke:#ffffff;"></i>
+            </div>
+            <div>
+              <div style="font-size:18px; font-weight:800; color:#ffffff;">AquaChile • Trabaja con Nosotros</div>
+              <div style="font-size:12px; color:#99f6e4;">Líderes en acuicultura sustentable y desarrollo de talentos</div>
+            </div>
+          </div>
+          <h2 style="font-size:22px; font-weight:800; margin-bottom:6px;">Postulación a Oportunidades Laborales</h2>
+          <p style="font-size:13px; color:#cbd5e1; max-width:600px;">Completa tus antecedentes profesionales para incorporarte a nuestros procesos de selección. Tu postulación ingresará automáticamente al equipo de Gestión de Personas.</p>
+        </div>
+
+        <div class="form-card" style="max-width:750px; margin:0 auto;">
+          <form id="formPortalPublico" onsubmit="handlePortalPostulacion(event)">
+            <div style="margin-bottom:20px; border-bottom:1px solid #f3f4f6; padding-bottom:12px;">
+              <div style="font-weight:700; font-size:15px; color:#111827;">Datos Personales y de Contacto</div>
+              <div style="font-size:12px; color:#6b7280;">Ingresa tus datos fidedignos para contactarte ante entrevistas.</div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Nombre Completo *</label>
+              <input type="text" class="input" id="portalNombre" placeholder="Ej. Camila Morales Sepúlveda" required>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Correo Electrónico de Contacto *</label>
+                <input type="email" class="input" id="portalEmail" placeholder="tu.nombre@ejemplo.com" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Teléfono Móvil (WhatsApp) *</label>
+                <input type="text" class="input" id="portalTel" placeholder="+56 9 8765 4321" required>
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Área o Familia de Cargo *</label>
+                <select class="input" id="portalFamilia" required>
+                  <option value="">Selecciona un área laboral...</option>
+                  <option value="Tecnología/TI">Tecnología/TI</option>
+                  <option value="Operaciones y Logística">Operaciones y Logística</option>
+                  <option value="Recursos Humanos">Recursos Humanos</option>
+                  <option value="Finanzas y Contabilidad">Finanzas y Contabilidad</option>
+                  <option value="Ventas y Marketing">Ventas y Marketing</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Cargo Específico al que Postulas *</label>
+                <input type="text" class="input" id="portalCargo" placeholder="Ej. Supervisor de Centro o Técnico de Planta" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Adjuntar Currículum Vitae (CV) * (.pdf, .doc, .docx)</label>
+              <div class="upload-box" onclick="document.getElementById('portalCvFile').click()">
+                <div style="background:#ccfbf1; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 8px auto;">
+                  <i data-lucide="upload-cloud" style="width:20px; height:20px; color:#0d9488;"></i>
+                </div>
+                <div style="font-weight:700; color:#0f766e; font-size:14px;" id="cvFileNameDisplay">Haz clic para subir tu CV aquí</div>
+                <div style="font-size:11px; color:#9ca3af; margin-top:2px;">Formatos permitidos: PDF o Word (máx 15MB)</div>
+                <input type="file" id="portalCvFile" style="display:none;" onchange="updateFileName(this)">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Breve Resumen de Experiencia / Motivación (Opcional)</label>
+              <textarea class="input" id="portalObs" rows="3" placeholder="Cuéntanos brevemente sobre tus principales logros y disponibilidad para desempeñarte en instalaciones de AquaChile..."></textarea>
+            </div>
+
+            <div class="form-group" style="margin-top:20px;">
+              <label class="checkbox-container" style="font-size:12px; color:#4b5563;">
+                <input type="checkbox" required> Autorizo a AquaChile a almacenar y procesar mis datos personales para fines exclusivos de procesos de selección y evaluación psicolaboral.
+              </label>
+            </div>
+
+            <div style="display:flex; justify-content:flex-end; gap:12px; margin-top:24px;">
+              <button type="button" class="btn btn-outline" onclick="navigateTo('dashboard')">Cancelar y Salir</button>
+              <button type="submit" class="btn btn-primary" style="padding:10px 24px;">
+                <i data-lucide="send" style="width:16px; height:16px;"></i> Enviar mi Postulación a AquaChile
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
