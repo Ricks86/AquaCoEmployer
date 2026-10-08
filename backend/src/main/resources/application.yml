@@ -2,19 +2,36 @@ server:
   port: 8080
 
 spring:
+  application:
+    name: aquaco-employer
   servlet:
     multipart:
-      max-file-size: 5MB
-      max-request-size: 5MB
+      max-file-size: 15MB
+      max-request-size: 15MB
   datasource:
-    url: jdbc:oracle:thin:@aquacoemployer_high?TNS_ADMIN=Rutawallet
-    username: user
-    password: contra
-    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:h2:file:./data/aquacodb;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
   jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
+
+# Configuración alternativa para Oracle Autonomous DB (si se dispone de Wallet):
+# spring:
+#   datasource:
+#     url: jdbc:oracle:thin:@aquacoemployer_high?TNS_ADMIN=Rutawallet
+#     username: user
+#     password: contra
+#     driver-class-name: oracle.jdbc.OracleDriver

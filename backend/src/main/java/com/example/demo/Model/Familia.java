@@ -1,9 +1,12 @@
 package com.example.demo.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,5 +22,11 @@ public class Familia {
     private String nombre;
 
     @OneToMany(mappedBy = "familia", cascade = CascadeType.ALL)
-    private List<Cargo> cargos;
+    @JsonIgnore
+    @ToString.Exclude
+    private List<Cargo> cargos = new ArrayList<>();
+
+    public Familia(String nombre) {
+        this.nombre = nombre;
+    }
 }
