@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.Model.Familia;
 
+import java.util.Optional;
+
 @Repository
 public interface FamiliaRepository extends JpaRepository<Familia, Long> {
+    Optional<Familia> findByNombreIgnoreCase(String nombre);
 }

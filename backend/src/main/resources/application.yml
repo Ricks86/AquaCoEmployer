@@ -4,8 +4,8 @@ server:
 spring:
   servlet:
     multipart:
-      max-file-size: 5MB
-      max-request-size: 5MB
+      max-file-size: 15MB
+      max-request-size: 15MB
   datasource:
     url: jdbc:oracle:thin:@aquacoemployer_high?TNS_ADMIN=/home/duckyrichii/Descargas/baldur/Wallet_AquaCoEmployer
     username: dev_Aqua

@@ -18,6 +18,17 @@ public class Postulante {
     @Column(nullable = false)
     private String nombre;
 
+    private String email;
+
+    private String tel;
+
+    private String fecha;
+
+    private String cv;
+
+    @Column(length = 1000)
+    private String observaciones;
+
     @ManyToOne
     @JoinColumn(name = "cargo_id", nullable = false)
     private Cargo cargo;

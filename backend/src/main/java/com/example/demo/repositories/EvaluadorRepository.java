@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.Model.Evaluador;
 
+import java.util.Optional;
+
 @Repository
 public interface EvaluadorRepository extends JpaRepository<Evaluador, Long> {
+    Optional<Evaluador> findByNombreIgnoreCase(String nombre);
 }

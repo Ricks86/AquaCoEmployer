@@ -5,7 +5,11 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BACKEND_DIR="$BASE_DIR/backend"
 FRONTEND_DIR="$BASE_DIR/formulario-entrevistas"
 
-export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+if [ -d "$HOME/.jdks/temurin-21.0.11" ]; then
+    export JAVA_HOME="$HOME/.jdks/temurin-21.0.11"
+else
+    export JAVA_HOME=/usr/lib/jvm/java-25-openjdk
+fi
 export PATH="$JAVA_HOME/bin:$PATH"
 
 echo "=========================================================="

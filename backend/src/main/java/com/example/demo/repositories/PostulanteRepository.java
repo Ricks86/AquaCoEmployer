@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 public interface PostulanteRepository extends JpaRepository<Postulante, Long> {
     List<Postulante> findByEstado(Estado estado);
+    List<Postulante> findAllByOrderByIdDesc();
 }

@@ -5,6 +5,13 @@
 /home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Evaluador.java
 /home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Familia.java
 /home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Postulante.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/config/DataInitializer.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/controller/PostulanteController.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/controller/SolicitudController.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/dto/ActualizarEvaluacionRequest.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/dto/CrearSolicitudRequest.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/dto/PostulanteDTO.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/dto/SolicitudDTO.java
 /home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/CargoRepository.java
 /home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/EntrevistaRepository.java
 /home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/EvaluadorRepository.java
