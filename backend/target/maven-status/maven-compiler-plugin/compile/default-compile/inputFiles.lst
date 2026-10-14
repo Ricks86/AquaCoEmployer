@@ -1,0 +1,12 @@
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/DemoApplication.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Cargo.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Entrevista.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Estado.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Evaluador.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Familia.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/Model/Postulante.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/CargoRepository.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/EntrevistaRepository.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/EvaluadorRepository.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/FamiliaRepository.java
+/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/backend/src/main/java/com/example/demo/repositories/PostulanteRepository.java

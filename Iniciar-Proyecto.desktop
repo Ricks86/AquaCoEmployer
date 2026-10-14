@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Iniciar Proyecto SAC
+Comment=Inicia Backend Spring Boot y Frontend React con un solo clic
+Exec="/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2/iniciar.sh"
+Path=/home/duckyrichii/Escritorio/codigos/Proyecto SAC/sac2
+Icon=system-run
+Terminal=true
+Categories=Development;
